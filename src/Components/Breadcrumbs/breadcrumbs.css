@@ -1,0 +1,45 @@
+.breadcrumbs {
+   font-size: 14px;
+   padding: 0 !important;
+}
+
+.breadcrumbs > * {
+   display: inline-block;
+   color: inherit;
+   text-decoration: none;
+}
+
+.breadcrumbs a:first-child {
+   margin-left: 15px;
+}
+
+.breadcrumbs .crumb::after,
+.breadcrumbs_home::after {
+   content: '>';
+   margin-left: 10px;
+}
+
+.breadcrumbs .crumb:last-child::after,
+.breadcrumbs .crumb:first-child::after {
+  display: none;
+}
+
+.breadcrumbs .crumb:last-child a {
+   color: #a7a7a7;
+}
+
+.breadcrumbs .crumb a {
+   color: rgb(47, 53, 88);
+   text-decoration: none;
+}
+
+.disabled {
+   pointer-events: none;
+   color: rgb(194, 194, 193);
+}
+
+@media only screen and (max-width: 768px) {
+   .breadcrumbs {
+      margin-top: 20px;
+   }
+}

@@ -1,0 +1,67 @@
+.admin-page_title {
+  text-align: center;
+}
+
+.admin-page_quote-block {
+   width: 70%;
+   min-width: 200px;
+   background-color: rgb(189, 210, 246);
+   color: inherit;
+   margin: 30px auto;
+   padding: 15px 20px;
+   border-radius: 6px;
+}
+
+.admin-page_quote-block-top {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: space-around;
+  margin-bottom: 20px;
+}
+
+.list-style {
+  padding: 10px;
+  border-radius: 6px;
+  background-color: aliceblue;
+}
+
+.user-info {
+  margin-right: 20px;
+  flex-grow: 1;
+}
+
+.user-info p:first-child {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 5px;
+  white-space: normal;
+}
+
+.user-info p:nth-child(2) {
+  font-size: 14px;
+}
+
+.form-info {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  width: 50%;
+  gap: 10px;
+  flex-grow: 1;
+}
+
+.option {
+  color: green;
+  height: 41px;
+  padding: 10px 5px;
+  border-radius: 8px;
+}
+
+.delete {
+  text-align: right;
+  margin-top: 20px;
+  cursor: pointer;
+  font-size: 18px;
+  margin: 20px 0 0 95%;
+}

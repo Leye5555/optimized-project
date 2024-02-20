@@ -1,0 +1,30 @@
+*,
+::after,::before{
+  margin: 0;
+  box-sizing: border-box;
+  padding: 0;
+  list-style: none;
+}
+
+.main_content {
+  flex-grow: 1;
+}
+
+.main_container {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  position: relative;
+}
+
+.container {
+  width: 1000px;
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 0 25px;
+}
+
+.icon {
+  color: rgb(73 118 193);
+}

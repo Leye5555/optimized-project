@@ -1,0 +1,64 @@
+@media only screen and (max-width: 992px) {
+   .flavors-container {
+      justify-content: space-evenly;
+   }
+}
+
+@media only screen and (max-width: 870px) {
+   .main_info_block {
+      width: 100% !important;
+   }
+   
+   .main_info {
+      justify-content: center !important;
+   }
+
+   .form_container {
+      margin-top: 20px;
+   }
+}
+
+@media only screen and (max-width: 768px) {
+   .company-info_sn {
+      display: none;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .main_container {
+      font-size: 14px;
+   }
+
+   .company-info_list {
+      flex-direction: column;
+      gap: 10px;
+      align-items: flex-start !important;
+   }
+
+   .schedule_icon,
+   .login {
+      width: 33px !important;
+      height: 33px !important;
+   }
+
+   .login {
+      margin: 0 20px  !important;
+   }
+}
+
+@media only screen and (max-width: 600px) {
+   .chicago li ul > li {
+      margin-left: 20px !important;
+   }
+
+  .chicago > li, .other_addresses > li {
+     margin-left: 0px !important;
+   }
+}
+
+@media only screen and (max-width: 400px) {
+   .form_container,
+   .reviews_container  {
+      width: 100%;
+   }
+}

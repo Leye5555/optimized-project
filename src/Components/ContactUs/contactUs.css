@@ -1,0 +1,29 @@
+.contact-us_container {
+   margin-bottom: 25px;
+   margin-top: 20px;
+}
+
+.contact-us_container h2 {
+   text-align: center;
+   margin-bottom: 20px;
+}
+
+.contact-us_container > ul > li {
+   list-style: disc;
+   margin-bottom: 20px;
+}
+
+.chicago > li,
+.other_addresses > li {
+   list-style: circle;
+   margin-left: 40px;
+}
+
+.chicago li  ul > li {
+   list-style: square;
+   margin-left: 80px;
+}
+
+.other_addresses {
+   margin-bottom: 15px;
+}
