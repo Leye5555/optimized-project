@@ -1,8 +1,8 @@
 import React, { useEffect, useRef, useState } from "react";
 import "./Navigation.css";
 import NavElements from "./NavElements";
-import {FaSearch} from "react-icons/fa";
-import {FaBars} from "react-icons/fa";
+import { FaSearch } from "react-icons/fa";
+import { FaBars } from "react-icons/fa";
 import "../../media.css";
 import Breadcrumbs from "../Breadcrumbs/Breadcrumbs";
 import { Link } from "react-router-dom";
@@ -15,42 +15,55 @@ function Navigation() {
   const [isFixed, setFixed] = useState(false);
   const [isOpenNav, setOpenNav] = useState(false);
   const foundFlavors = handleSearch();
-  
-  function getAllFlavors(){
-    fetch(`https://hot-handsomely-honey.glitch.me/flavors`)
+
+  function getAllFlavors() {
+    fetch("https://hot-handsomely-honey.glitch.me/flavors")
       .then((response) => response.json())
-      .then(data => setFlavors(data));
-  };
-  
-  function handleSearch(){
+      .then((data) => setFlavors(data));
+  }
+
+  function handleSearch() {
     const result = [];
     if (!searchText) return;
     let str = searchText.trim();
     if (str.length === 0) return;
     str = str.toLowerCase();
-    
+
     for (const key in flavors) {
       for (const flavor of flavors[key].list) {
-          if (str.length === 1) {
-            if (flavor.toLowerCase().at(0) === str) {
-              result.push({"name": flavor, "categoryId": flavors[key].id,"categoryName": flavors[key].name});
-            }
-          } else if (flavor.toLowerCase().includes(str)) {
-             result.push({"name": flavor, "categoryId": flavors[key].id,"categoryName": flavors[key].name});
-          }  
+        if (str.length === 1) {
+          if (flavor.toLowerCase().at(0) === str) {
+            result.push({
+              name: flavor,
+              categoryId: flavors[key].id,
+              categoryName: flavors[key].name,
+            });
+          }
+        } else if (flavor.toLowerCase().includes(str)) {
+          result.push({
+            name: flavor,
+            categoryId: flavors[key].id,
+            categoryName: flavors[key].name,
+          });
+        }
       }
     }
-   return result;
+    return result;
   }
 
   function handleMenu() {
-    setOpenNav((prev)=> prev ? false : true);
+    setOpenNav((prev) => (prev ? false : true));
   }
-
+  const handleKeyPress = (event) => {
+    if (event.key === "Enter") {
+      setSearchText("");
+    }
+  };
   useEffect(() => {
     getAllFlavors();
     const handleScroll = () => {
-      const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+      const scrollTop =
+        window.pageYOffset || document.documentElement.scrollTop;
       const element = elementRef.current;
 
       if (element) {
@@ -63,33 +76,67 @@ function Navigation() {
       }
     };
 
-    window.addEventListener('scroll', handleScroll);
+    window.addEventListener("scroll", handleScroll);
 
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+      window.removeEventListener("scroll", handleScroll);
     };
   }, []);
 
   return (
-    <header ref={elementRef} className={`header container ${isFixed ? 'fixed' : ''}`}>
-      <div className={`desktop-nav container ${isOpenNav ? 'show' : ''}`}>
-          <NavElements/>
-          <div className="nav_search">
-             <input type="search" name="search" value={searchText} placeholder="Find your favorite flavor..." onInput={(e) => setSearchText(e.target.value)} />
-             <button className="search-button">
-               <FaSearch className="search_icon"/>
-             </button>
-             <ul className={`nav-search_menu ${foundFlavors ? 'backgroundColor' : 'display_search'}`} onClick={()=> setSearchText("")} >
+    <header
+      ref={elementRef}
+      className={`header container ${isFixed ? "fixed" : ""}`}
+    >
+      <div className={`desktop-nav container ${isOpenNav ? "show" : ""}`}>
+        <NavElements />
+        <div className="nav_search">
+          <input
+            type="search"
+            name="search"
+            value={searchText}
+            placeholder="Find your favorite flavor..."
+            onInput={(e) => setSearchText(e.target.value)}
+          />
+          <button className="search-button">
+            <FaSearch className="search_icon" />
+          </button>
+          <div
+            role="button"
+            tabIndex={0}
+            onKeyUp={handleKeyPress}
+            onClick={() => setSearchText("")}
+          >
+            <ul
+              className={`nav-search_menu ${
+                foundFlavors ? "backgroundColor" : "display_search"
+              }`}
+            >
               {foundFlavors?.map((flavor) => {
-                return <li key={uuidv4()}><Link  className="nav-search_menu-link" to={"flavors/" + flavor.categoryId + "?highlight=" + flavor.name} >{flavor.name} - <i>{flavor.categoryName}</i></Link></li> 
+                return (
+                  <li key={uuidv4()}>
+                    <Link
+                      className="nav-search_menu-link"
+                      to={
+                        "flavors/" +
+                        flavor.categoryId +
+                        "?highlight=" +
+                        flavor.name
+                      }
+                    >
+                      {flavor.name} - <i>{flavor.categoryName}</i>
+                    </Link>
+                  </li>
+                );
               })}
-            </ul> 
+            </ul>
           </div>
+        </div>
       </div>
-      <Breadcrumbs/>
-      <FaBars className="burger_icon" onClick={handleMenu}/>
+      <Breadcrumbs />
+      <FaBars className="burger_icon" onClick={handleMenu} />
     </header>
-  )
+  );
 }
 
 export default Navigation;

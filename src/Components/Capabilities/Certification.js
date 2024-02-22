@@ -1,5 +1,5 @@
-import React from 'react'
-import ContentInfo from '../ContentInfo/ContentInfo'
+import React from "react"
+import ContentInfo from "../ContentInfo/ContentInfo"
 
 function Certification() {
   return (

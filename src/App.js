@@ -1,49 +1,134 @@
+import React, { useEffect, useState, Suspense } from "react";
 import { Route, Routes, useLocation } from "react-router-dom";
+import Layout from "./layout";
 import "./App.css";
-import Home from "./Components/HomePage/Home";
-import Capabilities from "./Components/Capabilities/Capabilities";
-import Flavors from "./Components/Flavors/Flavors";
-import AboutUs from "./Components/AboutUs/AboutUs";
-import ContactUs from "./Components/ContactUs/ContactUs";
-import Footer from "./Components/Footer/Footer";
-import Certification from "./Components/Capabilities/Certification";
-import Production from "./Components/Capabilities/Production";
-import Design from "./Components/Capabilities/Design";
-import FlavorsList from "./Components/Flavors/FlavorsList";
-import Navigation from "./Components/Navigation/Navigation";
-import CompanyInfo from "./Components/CompanyInfo/CompanyInfo";
-import LoginPage from "./Components/LoginPage/LoginPage";
 import "./media.css";
-import AdminPage from "./Components/AdminPage/AdminPage";
-import { useEffect, useState } from "react";
+const Home = React.lazy(() => import("./pages/HomePage/Home"));
+const Capabilities = React.lazy(() =>
+  import("./components/Capabilities/Capabilities")
+);
+const Flavors = React.lazy(() => import("./components/Flavors/Flavors"));
+const AboutUs = React.lazy(() => import("./components/AboutUs/AboutUs"));
+const ContactUs = React.lazy(() => import("./components/ContactUs/ContactUs"));
+const Certification = React.lazy(() =>
+  import("./components/Capabilities/Certification")
+);
+const Production = React.lazy(() =>
+  import("./components/Capabilities/Production")
+);
+const Design = React.lazy(() => import("./components/Capabilities/Design"));
+const FlavorsList = React.lazy(() =>
+  import("./components/Flavors/FlavorsList")
+);
+
+const LoginPage = React.lazy(() => import("./pages/LoginPage/LoginPage"));
+const AdminPage = React.lazy(() => import("./components/AdminPage/AdminPage"));
 
 function App() {
   const location = useLocation();
   const [trackLocation, setTrackLocation] = useState(location);
 
-  useEffect(()=>{
+  useEffect(() => {
     setTrackLocation(location);
-  },[location])
+  }, [location]);
 
   return (
-    <div className="main_container main_content">
-      <CompanyInfo track={trackLocation}/>
-      <Navigation/>
+    <Layout trackLocation={trackLocation}>
       <Routes>
-        <Route path="/" element={<Home/>}></Route>
-        <Route path="/capabilities" element={<Capabilities />}></Route>
-        <Route path="/flavors" element={<Flavors />}></Route>
-        <Route path='/flavors/:id' element={<FlavorsList/>}></Route>
-        <Route path="/about-us" element={<AboutUs />}></Route>
-        <Route path="/contact-us" element={<ContactUs />}></Route>
-        <Route path="/capabilities/certification" element={<Certification/>}></Route>
-        <Route path="/capabilities/production" element={<Production/>}></Route>
-        <Route path="/capabilities/design" element={<Design/>}></Route>
-        <Route path="/login" element={<LoginPage/>}></Route>
-        <Route path="/admin" element={<AdminPage/>}></Route>
+        <Route
+          path="/"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <Home />
+            </Suspense>
+          }
+        />
+        <Route path="/capabilities">
+          <Route
+            index
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Capabilities />
+              </Suspense>
+            }
+          />
+          <Route
+            path="certification"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Certification />
+              </Suspense>
+            }
+          />
+          <Route
+            path="production"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Production />
+              </Suspense>
+            }
+          />
+          <Route
+            path="design"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Design />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route path="/flavors">
+          <Route
+            index
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <Flavors />
+              </Suspense>
+            }
+          />
+          <Route
+            path=":id"
+            element={
+              <Suspense fallback={<h1>Loading...</h1>}>
+                <FlavorsList />
+              </Suspense>
+            }
+          />
+        </Route>
+        <Route
+          path="/about-us"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <AboutUs />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/contact-us"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <ContactUs />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/login"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <LoginPage />
+            </Suspense>
+          }
+        />
+        <Route
+          path="/admin"
+          element={
+            <Suspense fallback={<h1>Loading...</h1>}>
+              <AdminPage />
+            </Suspense>
+          }
+        />
       </Routes>
-      <Footer/>
-    </div>
+    </Layout>
   );
 }
 

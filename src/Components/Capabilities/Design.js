@@ -1,10 +1,10 @@
-import React from 'react'
-import ContentInfo from '../ContentInfo/ContentInfo'
+import React from "react"
+import ContentInfo from "../ContentInfo/ContentInfo"
 
 function Design() {
   return (
     <div className="main_content container">
-        <ContentInfo/>
+      <ContentInfo/>
     </div>
   )
 }

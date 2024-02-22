@@ -1,0 +1,14 @@
+
+#modules
+/node_modules
+
+#prod
+/build
+/dist
+
+
+#secrets
+.env
+.env.local
+.env.development
+.env.prod
